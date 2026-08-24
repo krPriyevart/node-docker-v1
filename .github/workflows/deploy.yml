@@ -1,0 +1,24 @@
+name: Deploy NodeJS Application to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Deploy Vie SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOSTIP }}
+          username: ubuntu
+          key:  ${{ secrets.PRIVATE_KEY }}
+          scripts:
+            cd node-docker-v1 
+            git pull
+            docker compose up -d --build
