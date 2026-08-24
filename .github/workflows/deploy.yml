@@ -1,4 +1,4 @@
-name: Deploy NodeJS Application to Hostinger
+name: Deploy NodeJS Application 
 
 on:
   push:
